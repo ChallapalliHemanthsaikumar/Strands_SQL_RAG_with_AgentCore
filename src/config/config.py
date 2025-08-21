@@ -3,6 +3,7 @@ from strands.models import BedrockModel
 from dotenv import load_dotenv
 import os 
 import logging
+from strands.agent.conversation_manager import SlidingWindowConversationManager,SummarizingConversationManager
 
 
 load_dotenv()
@@ -35,3 +36,10 @@ logging.basicConfig(
     level=logging.INFO  # Set logging level (change to DEBUG for more details)
 )
 logger = logging.getLogger(__name__)
+
+
+
+conversaion_manager = SlidingWindowConversationManager(window_size=20,should_truncate_results=True)
+summarization_manager = SummarizingConversationManager(summary_ratio=0.3,preserve_recent_messages=3)
+
+

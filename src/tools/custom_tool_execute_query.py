@@ -160,6 +160,7 @@ class RedshiftQueryExecutorTool:
         """
         try:
             # Parse the query
+            logger.info(f"Query before execution {query}")
             parsed = sqlparse.parse(query)
             if not parsed:
                 logger.warning("Query parsing failed")
@@ -194,7 +195,7 @@ class RedshiftQueryExecutorTool:
         cursor = None
         
         try:
-            logger.info(f"Executing query: {query[:100]}{'...' if len(query) > 100 else ''}")
+            logger.info(f"Executing query: {query}")
             
             # Get database connection
             connection = self._get_connection()
